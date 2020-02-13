@@ -1,0 +1,213 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-1 col-md-1">
+
+            </div>
+            <div class="col-4 col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="quantScoreInput"><b>Quant</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <span>Current</span> <input type="number" [(ngModel)]="input1">
+                    </div>
+                    <div class="col-md-6">
+                        <span>Target</span> <input type="number" [(ngModel)]="input2">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 col-md-2">
+
+            </div>
+            <div class="col-4 col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="verbalScoreInput"><b>Verbal</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <span>Current</span> <input type="number" [(ngModel)]="input3">
+                    </div>
+                    <div class="col-md-6">
+                        <span>Target</span> <input type="number" [(ngModel)]="input4">
+                    </div>
+                </div>
+            </div>
+            <div class="col-1 col-md-1">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" class="text-center">
+    <button style="background-color: #0fa2eb;color: white; border-radius: 25px; border:0px" (click)="Submit()">Submit
+        and Refresh</button>
+</div>
+
+<div class="row" *ngIf="show">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-1 col-md-1">
+
+            </div>
+            <div class="col-4 col-md-4">
+                <label for="totalScore"><b>Total Score</b></label>
+            </div>
+            <div class="col-2 col-md-2">
+
+            </div>
+            <div class="col-4 col-md-4">
+
+            </div>
+            <div class="col-1 col-md-1">
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-1 col-md-1">
+
+            </div>
+            <div class="col-4 col-md-4">
+                <p><b>{{currentScore}}</b></p>
+            </div>
+            <div class="col-2 col-md-2">
+
+            </div>
+            <div class="col-4 col-md-4">
+
+            </div>
+            <div class="col-1 col-md-1">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="show">
+    <div class="col-1 col-md-1">
+    </div>
+    <div class="col-10 col-md-10">
+        <section class="example-section">
+            <mat-progress-bar class="example-margin" style="height: 25px;" [mode]="mode" [value]="totalScoreP"
+                [bufferValue]="totalScoreB">
+            </mat-progress-bar>
+            <span class="tooltiptextC" [ngStyle]="{'margin-left':totalScoreStyle }"><span>{{targetScore}}</span></span>
+            <span class="tooltiptextT" [ngStyle]="{'margin-left':currentScoreStyle }"><span [ngStyle]="{'margin-top': '50px'}">{{targetScore}}</span></span>
+        </section>
+        <br>
+        <div class="row" class="text-left">
+            <p *ngIf='(targetScore-currentScore)> 0'>Your estimated GMAT score per your perfomance in this mock test is
+                {{currentScore}} which is
+                <b>{{targetScore - currentScore}} points </b> lower than your target GMAT score of {{targetScore}}</p>
+            <p *ngIf='(targetScore-currentScore)< 0'>Your estimated GMAT score per your perfomance in this mock test is
+                {{currentScore}} which is
+                <b>{{(targetScore - currentScore) * (-1) }} points </b> greater than your target GMAT score of
+                {{targetScore}}</p>
+            <p *ngIf="(targetScore-currentScore) == 0">Your estimated GMAT score per your perfomance in this mock test
+                is {{currentScore}} which is
+                which is equal to the target score.</p>
+        </div>
+        <!-- <mat-slider step="1" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step" [thumbLabel]="thumbLabel"
+    [tickInterval]="tickInterval" [(ngModel)]="value" [vertical]="vertical" value=100 max="600"></mat-slider> -->
+    </div>
+    <div class="col-1 col-md-1">
+    </div>
+
+</div>
+
+
+<div class="row" *ngIf="show">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-1 col-md-1">
+
+            </div>
+            <div class="col-4 col-md-4">
+                <label for="totalScore"><b>Quant Score</b></label>
+                <div class="row">
+                    <p><b>Q{{quantScoreInputC}}</b></p>
+                </div>
+            </div>
+            <div class="col-2 col-md-2">
+
+            </div>
+            <div class="col-4 col-md-4">
+                <label for="totalScore"><b>Verbal Score</b></label>
+                <div class="row">
+                    <p><b>V{{verbalScoreInputC}}</b></p>
+                </div>
+            </div>
+            <div class="col-1 col-md-1">
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-1 col-md-1">
+
+            </div>
+            <div class="col-4 col-md-4">
+                <section class="example-section">
+                    <mat-progress-bar class="example-margin1" style="height: 20px;" [mode]="mode"
+                        [value]="quantScoreInputCG" [bufferValue]="quantScoreInputTG">
+                    </mat-progress-bar>
+                    <span class="tooltiptextQC" [ngStyle]="{'margin-left':quantScoreInputTStyle }"><span>Q{{quantScoreInputT}}</span></span>
+                    <span class="tooltiptextQT" [ngStyle]="{'margin-left':quantScoreInputCStyle }"><span [ngStyle]="{'margin-top': '50px'}">Q{{quantScoreInputC}}</span></span>
+                    <br>
+                </section>
+                <div class="row" class="text-left">
+                    <p *ngIf='(quantScoreInputT-quantScoreInputC)> 0'>Your estimated GMAT score per your perfomance in this mock test is Q{{quantScoreInputC}} which is
+                        <b>{{quantScoreInputT - quantScoreInputC}} points </b> lower than your target GMAT score of
+                        Q{{quantScoreInputT}}</p>
+                    <p *ngIf='(quantScoreInputT-quantScoreInputC)< 0'>Your estimated GMAT score per your perfomance in this mock test is Q{{quantScoreInputC}} which is
+                        <b>{{(quantScoreInputT - quantScoreInputC) * (-1)}} points </b> greater than your target GMAT score of
+                        Q{{quantScoreInputT}}</p>
+                    <p *ngIf='(quantScoreInputT-quantScoreInputC) == 0'>Your estimated GMAT score per your perfomance in this mock test is Q{{quantScoreInputC}} which is
+                        which is equal to the target score.</p>
+                </div>
+            </div>
+            <div class="col-2 col-md-2">
+
+            </div>
+            <div class="col-4 col-md-4">
+                <section class="example-section">
+                    <mat-progress-bar class="example-margin" style="height: 20px;" [mode]="mode"
+                        [value]="verbalScoreInputCG" [bufferValue]="verbalScoreInputTG">
+                    </mat-progress-bar>
+                    <span class="tooltiptextQC" [ngStyle]="{'margin-left':verbalScoreInputCStyle }"><span>V{{verbalScoreInputC}}</span></span>
+                    <span class="tooltiptextQT" [ngStyle]="{'margin-left':verbalScoreInputTtyle }"><span [ngStyle]="{'margin-top': '50px'}">V{{verbalScoreInputT}}</span></span>
+                    <br>
+                </section>
+                <div class="row" class="text-left">
+                    <p *ngIf='(verbalScoreInputT - verbalScoreInputC)> 0'>Your estimated GMAT score per your perfomance in this mock test is V{{verbalScoreInputC}} which
+                        is <b>{{verbalScoreInputT - verbalScoreInputC}} points </b> lower than your target GMAT score of
+                        V{{verbalScoreInputT}}</p>
+                    <p *ngIf='(verbalScoreInputT - verbalScoreInputC)< 0'>Your estimated GMAT score per your perfomance in this mock test is V{{verbalScoreInputC}} which
+                        is <b>{{(verbalScoreInputT - verbalScoreInputC) * (-1)}} points </b> lower than your target GMAT score of
+                        V{{verbalScoreInputT}}</p>
+                    <p *ngIf='(verbalScoreInputT - verbalScoreInputC) == 0'>Your estimated GMAT score per your perfomance in this mock test is V{{verbalScoreInputC}} which is
+                        which is equal to the target score.</p>
+                </div>
+            </div>
+            <div class="col-1 col-md-1">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" class="text-center" *ngIf="show">
+    <button style="background-color: red;color: black; border-radius: 25px; border:0px"
+        (click)="closeAll()">Close</button>
+</div>
+<div class="row" class="text-center" *ngIf="!show">
+    <p>{{msg}}</p>
+</div>
+
+<!-- <div class="col-12">
+        <mat-slider class="danger" humbLabel step="0.01" max="100">hi</mat-slider>
+    </div> -->
+
+<!-- #f5f5f5  color- lignht
+    #ffe28a  color-- yellow
+#0fa2eb  color- blue -->
